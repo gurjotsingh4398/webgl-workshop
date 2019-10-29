@@ -10,7 +10,10 @@ const settings = {
   // Make the loop animated
   animate: true,
   // Get a WebGL canvas rather than 2D
-  context: "webgl"
+  context: "webgl",
+  scaleToView: true,
+  pixelsPerInch: 75,
+  orientation: "landscape"
 };
 
 const sketch = ({ context }) => {
