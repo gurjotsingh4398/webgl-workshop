@@ -6,6 +6,8 @@ require("three/examples/js/controls/OrbitControls");
 
 const canvasSketch = require("canvas-sketch");
 
+const addCube = require("./cube");
+
 const settings = {
   // Make the loop animated
   animate: true,
@@ -19,34 +21,52 @@ const settings = {
 const sketch = ({ context }) => {
   // Create a renderer
   const renderer = new THREE.WebGLRenderer({
-    canvas: context.canvas
+    canvas: context.canvas,
+    antialias: true
   });
 
   // WebGL background color
-  renderer.setClearColor("yellow", 1);
+  renderer.setClearColor("lightblue", 1);
 
   // Setup a camera
-  const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 100);
-  camera.position.set(0, 0, -4);
+  //   this.camera = new THREE.PerspectiveCamera(
+  //     50,
+  //     this.sizes.viewport.width / this.sizes.viewport.height,
+  //     0.01,
+  //     30
+  // );
+  // this.camera.position.set(0.25, 0.35, 0.25);
+  // this.camera.lookAt(new THREE.Vector3());
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.01,
+    30
+  );
+  camera.position.set(0.25, 0.35, 0.25);
   camera.lookAt(new THREE.Vector3());
 
   // Setup camera controller
   const controls = new THREE.OrbitControls(camera, context.canvas);
 
-  // Setup your scene
-  const scene = new THREE.Scene();
-
   // Setup a geometry
-  const geometry = new THREE.SphereGeometry(1, 32, 16);
+  const geometry = new THREE.PlaneBufferGeometry(3, 3);
 
   // Setup a material
   const material = new THREE.MeshBasicMaterial({
-    color: "red",
-    wireframe: true
+    color: "#F39250",
+    side: THREE.DoubleSide
+    // wireframe: false
   });
-
+  // {color: 0xffff00, }
   // Setup a mesh with geometry + material
   const mesh = new THREE.Mesh(geometry, material);
+
+  // Setup your scene
+  const scene = new THREE.Scene();
+
+  scene.add(addCube(-1, 0, 0.1));
   scene.add(mesh);
 
   // draw each frame
