@@ -14,8 +14,8 @@ const settings = {
   // Get a WebGL canvas rather than 2D
   context: "webgl",
   scaleToView: true,
-  pixelsPerInch: 75,
-  orientation: "landscape"
+  pixelsPerInch: 75
+  // orientation: "landscape"
 };
 
 const sketch = ({ context }) => {
@@ -28,24 +28,15 @@ const sketch = ({ context }) => {
   // WebGL background color
   renderer.setClearColor("lightblue", 1);
 
-  // Setup a camera
-  //   this.camera = new THREE.PerspectiveCamera(
-  //     50,
-  //     this.sizes.viewport.width / this.sizes.viewport.height,
-  //     0.01,
-  //     30
-  // );
-  // this.camera.position.set(0.25, 0.35, 0.25);
-  // this.camera.lookAt(new THREE.Vector3());
-
+  // Setup camera
   const camera = new THREE.PerspectiveCamera(
     45,
     window.innerWidth / window.innerHeight,
     0.01,
-    30
+    1000
   );
-  camera.position.set(0.25, 0.35, 0.25);
-  camera.lookAt(new THREE.Vector3());
+  camera.position.set(0.8, 1, 1);
+  camera.lookAt(new THREE.Vector3()); //or scene.position which is (0, 0, 0)
 
   // Setup camera controller
   const controls = new THREE.OrbitControls(camera, context.canvas);
@@ -57,16 +48,17 @@ const sketch = ({ context }) => {
   const material = new THREE.MeshBasicMaterial({
     color: "#F39250",
     side: THREE.DoubleSide
-    // wireframe: false
   });
-  // {color: 0xffff00, }
+
   // Setup a mesh with geometry + material
   const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.x = -0.5 * Math.PI;
 
   // Setup your scene
   const scene = new THREE.Scene();
 
   scene.add(addCube(-1, 0, 0.1));
+  scene.add(addCube(0.5, -0.1, 0.1));
   scene.add(mesh);
 
   // draw each frame
