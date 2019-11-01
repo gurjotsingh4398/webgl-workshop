@@ -1,5 +1,5 @@
-const shaderFragment = require("../Shaders/floor/fragment.glsl");
-const shaderVertex = require("../Shaders/floor/vertex.glsl");
+const shaderFragment = require("../Shaders/floor/fragment");
+const shaderVertex = require("../Shaders/floor/vertex");
 
 const FloorMaterial = ({ background, shadow, color }) => {
   const uniforms = {

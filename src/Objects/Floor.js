@@ -21,13 +21,13 @@ const Floor = () => {
   const floorTexture = new THREE.DataTexture(data, 2, 2, THREE.RGBFormat);
   floorTexture.magFilter = THREE.LinearFilter;
   floorTexture.needsUpdate = true;
-
+  // console.log(floorTexture);
   // Setup a geometry
   const geometry = new THREE.PlaneBufferGeometry(1.084, 1.084, 10, 10);
 
   // Setup the material
   const material = FloorMaterial({
-    background: texture,
+    background: floorTexture,
     color: new THREE.Color(0xd04500)
   });
 

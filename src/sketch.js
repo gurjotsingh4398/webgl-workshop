@@ -6,7 +6,8 @@ require("three/examples/js/controls/OrbitControls");
 
 const canvasSketch = require("canvas-sketch");
 
-const addCube = require("./Objects/cube");
+// const addCube = require("./Objects/cube");
+const Floor = require("./Objects/Floor");
 
 const settings = {
   // Make the loop animated
@@ -45,30 +46,31 @@ const sketch = ({ context }) => {
   controls.zoomSpeed = 1;
 
   // Setup a geometry
-  const geometry = new THREE.PlaneBufferGeometry(100, 100);
+  // const geometry = new THREE.PlaneBufferGeometry(100, 100);
 
   // Setup a material
-  const material = new THREE.MeshBasicMaterial({
-    color: "#F39250",
-    side: THREE.DoubleSide
-  });
+  // const material = new THREE.MeshBasicMaterial({
+  //   color: "#F39250",
+  //   side: THREE.DoubleSide
+  // });
 
   // Setup a mesh with geometry + material
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.x = -0.5 * Math.PI;
+  // const mesh = new THREE.Mesh(geometry, material);
+  // mesh.rotation.x = -0.5 * Math.PI;
 
   // Setup your scene
   const scene = new THREE.Scene();
 
-  for (let i = -5; i < 5; i += 1) {
-    for (let j = -5; j < 5; j += 1) {
-      scene.add(addCube(i, 0, j));
-    }
-  }
-  scene.add(addCube(-1, 0, 0.1));
-  scene.add(addCube(0.5, -0.1, 0.1));
+  // for (let i = -5; i < 5; i += 1) {
+  //   for (let j = -5; j < 5; j += 1) {
+  //     scene.add(addCube(i, 0, j));
+  //   }
+  // }
+  // scene.add(addCube(-1, 0, 0.1));
+  // scene.add(addCube(0.5, -0.1, 0.1));
 
-  scene.add(mesh);
+  scene.add(Floor());
+  // scene.add(mesh);
 
   // draw each frame
   return {
