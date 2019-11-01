@@ -6,7 +6,7 @@ require("three/examples/js/controls/OrbitControls");
 
 const canvasSketch = require("canvas-sketch");
 
-const addCube = require("./cube");
+const addCube = require("./Objects/cube");
 
 const settings = {
   // Make the loop animated
