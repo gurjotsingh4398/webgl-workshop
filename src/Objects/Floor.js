@@ -1,7 +1,7 @@
 const FloorMaterial = require("../Materials/Floor");
 
 const Floor = () => {
-  // RGB value the four corner of the floor.
+  // orangish RGB value the four corner of the floor.
   const data = new Uint8Array([
     234,
     168,
@@ -17,17 +17,44 @@ const Floor = () => {
     98 // Top right: #eba962
   ]);
 
+  // RGB value for the floor shadow.
+  const data2 = new Uint8Array([
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255
+  ]);
+
   //  Texture of the floor
   const floorTexture = new THREE.DataTexture(data, 2, 2, THREE.RGBFormat);
   floorTexture.magFilter = THREE.LinearFilter;
   floorTexture.needsUpdate = true;
-  // console.log(floorTexture);
+
+  //  Texture for the shadow of the floor
+  const floorShadowTexture = new THREE.DataTexture(
+    data2,
+    2,
+    2,
+    THREE.RGBFormat
+  );
+  floorShadowTexture.magFilter = THREE.LinearFilter;
+  floorShadowTexture.needsUpdate = true;
+
   // Setup a geometry
   const geometry = new THREE.PlaneBufferGeometry(1.084, 1.084, 10, 10);
 
   // Setup the material
   const material = FloorMaterial({
     background: floorTexture,
+    shadow: floorShadowTexture,
     color: new THREE.Color(0xd04500)
   });
 
