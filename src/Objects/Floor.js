@@ -49,7 +49,7 @@ const Floor = () => {
   floorShadowTexture.needsUpdate = true;
 
   // Setup a geometry
-  const geometry = new THREE.PlaneBufferGeometry(1.084, 1.084, 10, 10);
+  const geometry = new THREE.PlaneBufferGeometry(10, 10, 10, 10);
 
   // Setup the material
   const material = FloorMaterial({

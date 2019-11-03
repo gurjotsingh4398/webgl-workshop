@@ -6,7 +6,7 @@ require("three/examples/js/controls/OrbitControls");
 
 const canvasSketch = require("canvas-sketch");
 
-// const addCube = require("./Objects/cube");
+const addCube = require("./Objects/cube");
 const Floor = require("./Objects/Floor");
 
 const settings = {
@@ -16,7 +16,6 @@ const settings = {
   context: "webgl",
   scaleToView: true,
   pixelsPerInch: 75
-  // orientation: "landscape"
 };
 
 const sketch = ({ context }) => {
@@ -61,13 +60,11 @@ const sketch = ({ context }) => {
   // Setup your scene
   const scene = new THREE.Scene();
 
-  // for (let i = -5; i < 5; i += 1) {
-  //   for (let j = -5; j < 5; j += 1) {
-  //     scene.add(addCube(i, 0, j));
-  //   }
-  // }
-  // scene.add(addCube(-1, 0, 0.1));
-  // scene.add(addCube(0.5, -0.1, 0.1));
+  for (let i = -5; i < 5; i += 1) {
+    for (let j = -5; j < 5; j += 1) {
+      scene.add(addCube(i, 0, j));
+    }
+  }
 
   scene.add(Floor());
   // scene.add(mesh);
